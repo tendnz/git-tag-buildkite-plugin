@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ${BUILDKITE_COMMAND_EXIT_STATUS:-0} != "0" ]]
+then
+  echo "--- Skipping git-tag because the command failed"
+  exit 0
+fi
+
+branch=${BUILDKITE_PLUGIN_GIT_TAG_BRANCH:-${BUILDKITE_BRANCH}}
+message=${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE:-"Build #${BUILDKITE_BUILD_NUMBER}"}
+
+if [[ -n ${BUILDKITE_PLUGIN_GIT_TAG_USER_NAME+x} ]]
+then
+  git config user.name "$BUILDKITE_PLUGIN_GIT_TAG_USER_NAME"
+fi
+
+if [[ -n ${BUILDKITE_PLUGIN_GIT_TAG_USER_EMAIL+x} ]]
+then
+  git config user.email "$BUILDKITE_PLUGIN_GIT_TAG_USER_EMAIL"
+fi
+
+echo "--- Tagging with ${BUILDKITE_PLUGIN_GIT_TAG_VERSION}"
+git tag "${BUILDKITE_PLUGIN_GIT_TAG_VERSION}" -m "${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE}"
+git push --tags
+echo "--- Tags pushed"

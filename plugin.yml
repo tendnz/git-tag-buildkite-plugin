@@ -1,0 +1,17 @@
+name: Git Tag
+description: A Buildkite plugin to tag the current git repository with a specific value
+author: https://github.com/nicwise
+requirements: []
+configuration:
+  properties:
+    version:
+      type: string
+    message:
+      type: string
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
