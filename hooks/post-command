@@ -41,6 +41,6 @@ EOF
   }
 
   echo "Create release $BUILDKITE_PLUGIN_GIT_TAG_VERSION for repo: $BUILDKITE_PLUGIN_GIT_TAG_REPONAME"
-  curl --data "$(generate_post_data)" "https://api.github.com/repos/$BUILDKITE_PLUGIN_GIT_TAG_REPONAME/releases?access_token=$BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN"
+  curl --data "$(generate_post_data)" -H "Authorization: token $BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN" "https://api.github.com/repos/$BUILDKITE_PLUGIN_GIT_TAG_REPONAME/releases"
 
 fi
