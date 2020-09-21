@@ -19,7 +19,7 @@ echo "--- Setting email - ${email}"
 git config user.email "$email"
 
 echo "--- Tagging with ${BUILDKITE_PLUGIN_GIT_TAG_VERSION}"
-git tag "${BUILDKITE_PLUGIN_GIT_TAG_VERSION}" -m "${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE}"
+git tag "${BUILDKITE_PLUGIN_GIT_TAG_VERSION}" -m "${message}"
 git push --tags
 echo "--- Tags pushed"
 
