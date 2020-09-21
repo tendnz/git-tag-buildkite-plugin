@@ -14,8 +14,9 @@ configuration:
       type: string
     reponame:
       type: string
+    prerelease:
+      type: boolean
     user:
-      type: object
       properties:
         email:
           type: string
