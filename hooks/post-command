@@ -11,13 +11,17 @@ fi
 branch=${BUILDKITE_PLUGIN_GIT_TAG_BRANCH:-${BUILDKITE_BRANCH}}
 message=${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE:-"Build #${BUILDKITE_BUILD_NUMBER}"}
 
+env
+
 if [[ -n ${BUILDKITE_PLUGIN_GIT_TAG_USER_NAME+x} ]]
 then
+  echo "--- Setting username"
   git config user.name "$BUILDKITE_PLUGIN_GIT_TAG_USER_NAME"
 fi
 
 if [[ -n ${BUILDKITE_PLUGIN_GIT_TAG_USER_EMAIL+x} ]]
 then
+  echo "--- Setting email"
   git config user.email "$BUILDKITE_PLUGIN_GIT_TAG_USER_EMAIL"
 fi
 

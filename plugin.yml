@@ -1,8 +1,11 @@
 name: Git Tag
 description: A Buildkite plugin to tag the current git repository with a specific value
 author: https://github.com/nicwise
-requirements: []
+requirements: [git]
 configuration:
+  required: 
+    - version
+    - user
   properties:
     version:
       type: string
