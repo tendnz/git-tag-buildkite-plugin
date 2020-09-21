@@ -5,11 +5,14 @@ requirements: [git]
 configuration:
   required: 
     - version
-    - user
   properties:
     version:
       type: string
     message:
+      type: string
+    githubtoken:
+      type: string
+    reponame:
       type: string
     user:
       type: object

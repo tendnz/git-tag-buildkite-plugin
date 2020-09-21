@@ -13,9 +13,6 @@ message=${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE:-"Build #${BUILDKITE_BUILD_NUMBER}"}
 username=${BUILDKITE_PLUGIN_GIT_TAG_USER_0_NAME:-${BUILDKITE_BUILD_AUTHOR}}
 email=${BUILDKITE_PLUGIN_GIT_TAG_USER_0_EMAIL:-${BUILDKITE_BUILD_AUTHOR_EMAIL}}
 
-echo "-- ENV"
-env
-
 echo "--- Setting username - ${username}"
 git config user.name "$username"
 echo "--- Setting email - ${email}"
@@ -25,3 +22,23 @@ echo "--- Tagging with ${BUILDKITE_PLUGIN_GIT_TAG_VERSION}"
 git tag "${BUILDKITE_PLUGIN_GIT_TAG_VERSION}" -m "${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE}"
 git push --tags
 echo "--- Tags pushed"
+
+if [[ -n $BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN ]]; then
+  echo "--- Making a release"
+
+
+  generate_post_data()
+  {
+    cat <<EOF
+{
+  "tag_name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
+  "name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
+  "body": "$BUILDKITE_PLUGIN_GIT_TAG_MESSAGE"
+}
+EOF
+  }
+
+  echo "Create release $BUILDKITE_PLUGIN_GIT_TAG_VERSION for repo: $BUILDKITE_PLUGIN_GIT_TAG_REPONAME"
+  curl --data "$(generate_post_data)" "https://api.github.com/repos/$BUILDKITE_PLUGIN_GIT_TAG_REPONAME/releases?access_token=$BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN"
+
+fi
