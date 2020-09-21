@@ -33,7 +33,7 @@ if [[ -n $BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN ]]; then
 {
   "tag_name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
   "name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
-  "body": "$BUILDKITE_PLUGIN_GIT_TAG_MESSAGE"
+  "body": "$message"
 }
 EOF
   }
