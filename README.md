@@ -28,7 +28,7 @@ steps:
           message: "Release to $ENV [$BUILDKITE_BUILD_NUMBER]"
           githubtoken: $MY_GITHUB_TOKEN
           reponame: tendnz/my-repo-name
-          prerelease: false
+          prerelease: true
           user:
             - name: Bob Monkey
             - email: bob@codemonkeys.com
@@ -58,9 +58,13 @@ steps:
 
     The name of the repo, eg tendnz/my-reop-name
 
-- **prerelease** (optional, defaults to `true`)
+- **prerelease** (optional, defaults to `false`)
 
     Mark this as a prerelease or not.
+
+- **draft** (optional, defaults to `false`)
+
+    Mark this as a draft or not.
 
 - **user.email** (optional)
 

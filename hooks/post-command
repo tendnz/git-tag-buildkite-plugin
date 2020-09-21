@@ -12,7 +12,8 @@ branch=${BUILDKITE_PLUGIN_GIT_TAG_BRANCH:-${BUILDKITE_BRANCH}}
 message=${BUILDKITE_PLUGIN_GIT_TAG_MESSAGE:-"$BUILDKITE_ORGANIZATION_SLUG/$BUILDKITE_PIPELINE_SLUG: Build $BUILDKITE_BUILD_NUMBER for $BUILDKITE_BRANCH"}
 username=${BUILDKITE_PLUGIN_GIT_TAG_USER_1_NAME:-${BUILDKITE_BUILD_AUTHOR}}
 email=${BUILDKITE_PLUGIN_GIT_TAG_USER_0_EMAIL:-${BUILDKITE_BUILD_AUTHOR_EMAIL}}
-prerelease=${BUILDKITE_PLUGIN_GIT_TAG_PRERELEASE:-true}
+prerelease=${BUILDKITE_PLUGIN_GIT_TAG_PRERELEASE:-false}
+draft=${BUILDKITE_PLUGIN_GIT_TAG_DRAFT:-false}
 
 echo "--- Setting username - ${username}"
 git config user.name "$username"
@@ -35,7 +36,8 @@ if [[ -n $BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN ]]; then
   "tag_name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
   "name": "$BUILDKITE_PLUGIN_GIT_TAG_VERSION",
   "body": "$message",
-  "prerelease": $prerelease
+  "prerelease": $prerelease,
+  "draft": $draft
 }
 EOF
   }

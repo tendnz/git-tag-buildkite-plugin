@@ -1,6 +1,8 @@
 The MIT License (MIT)
 
-Copyright (c) 2018 The Dyrt
+Copyright (c) 2020 Tend Health NZ Ltd
+
+Derived from https://github.com/thedyrt/git-commit-buildkite-plugin (c) 2018 The Dyrt
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

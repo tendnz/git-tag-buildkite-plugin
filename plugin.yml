@@ -16,6 +16,8 @@ configuration:
       type: string
     prerelease:
       type: boolean
+    draft:
+      type: boolean
     user:
       properties:
         email:
