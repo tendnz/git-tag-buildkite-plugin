@@ -15,6 +15,8 @@ email=${BUILDKITE_PLUGIN_GIT_TAG_USER_0_EMAIL:-${BUILDKITE_BUILD_AUTHOR_EMAIL}}
 prerelease=${BUILDKITE_PLUGIN_GIT_TAG_PRERELEASE:-false}
 draft=${BUILDKITE_PLUGIN_GIT_TAG_DRAFT:-false}
 
+env
+
 
 echo "--- Setting username - ${username}"
 git config user.name "$username"
