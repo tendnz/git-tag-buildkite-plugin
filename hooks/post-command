@@ -15,6 +15,7 @@ email=${BUILDKITE_PLUGIN_GIT_TAG_USER_0_EMAIL:-${BUILDKITE_BUILD_AUTHOR_EMAIL}}
 prerelease=${BUILDKITE_PLUGIN_GIT_TAG_PRERELEASE:-false}
 draft=${BUILDKITE_PLUGIN_GIT_TAG_DRAFT:-false}
 
+
 echo "--- Setting username - ${username}"
 git config user.name "$username"
 echo "--- Setting email - ${email}"
@@ -25,7 +26,7 @@ git tag "${BUILDKITE_PLUGIN_GIT_TAG_VERSION}" -m "${message}"
 git push --tags
 echo "--- Tags pushed"
 
-if [[ -n $BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN ]]; then
+if [[ -n ${BUILDKITE_PLUGIN_GIT_TAG_GITHUBTOKEN+x} ]]; then
   echo "--- Making a release"
 
 
